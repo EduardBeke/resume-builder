@@ -16,14 +16,17 @@
         "parallel": false
       }
     },
-    "prebuild": {
+    "build": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["nx run resume-builder:generate-json-schema"],
+        "commands": [
+          "nx run resume-builder:generate-json-schema",
+          "nx run resume-builder:angular-build"
+        ],
         "parallel": false
       }
     },
-    "build": {
+    "angular-build": {
       "executor": "@angular-devkit/build-angular:browser-esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -38,12 +41,14 @@
             "input": "node_modules/monaco-editor",
             "output": "/assets/monaco/"
           },
-          "node_modules/primeng/resources/themes/viva-light/theme.css",
-          "node_modules/primeng/resources/primeng.min.css",
           "./src/favicon.ico",
           "./src/assets"
         ],
-        "styles": ["./src/styles.scss"],
+        "styles": [
+          "./src/styles.scss",
+          "node_modules/primeng/resources/themes/viva-light/theme.css",
+          "node_modules/primeng/resources/primeng.min.css"
+        ],
         "scripts": []
       },
       "configurations": {
