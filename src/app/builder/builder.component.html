@@ -1,0 +1,68 @@
+<ng-container *transloco="let t">
+  <p-menubar>
+    <div class="flex gap-4">
+      <button
+        class="p-button h-fit"
+        [useExistingCss]="true"
+        printSectionId="print-section"
+        ngxPrint
+        [innerHTML]="t('print')"
+      ></button>
+      <p-fileUpload
+        mode="basic"
+        [chooseLabel]="t('choosePicture')"
+        accept="image/*"
+        [fileLimit]="1"
+        [maxFileSize]="1000000"
+        (onSelect)="onSelectPicture($event)"
+      ></p-fileUpload>
+      <p-fileUpload
+        mode="basic"
+        [chooseLabel]="t('chooseSignature')"
+        accept="image/*"
+        [fileLimit]="1"
+        [maxFileSize]="1000000"
+        (onSelect)="onSelectSignature($event)"
+      ></p-fileUpload>
+      <p-dropdown
+        [options]="languages"
+        optionLabel="key"
+        optionValue="value"
+        (onChange)="updateLanguage($event.value)"
+      >
+        <ng-template let-language pTemplate="selectedItem">
+          <p [innerText]="t(language.key)"></p>
+        </ng-template>
+        <ng-template let-language pTemplate="item">
+          <p [innerText]="t(language.key)"></p>
+        </ng-template>
+      </p-dropdown>
+    </div>
+  </p-menubar>
+  <div class="flex">
+    <div class="flex flex-col items-center gap-4 w-screen">
+      <h1 class="text-4xl mt-4">Builder</h1>
+      <ngx-monaco-editor
+        class="min-h-full w-full"
+        (onInit)="onMonacoInit()"
+        [options]="editorOptions"
+        [(ngModel)]="resumeString"
+        (ngModelChange)="onResumeChange($event)"
+      />
+    </div>
+
+    <div
+      style="font-family: 'Avenir LT Pro', sans-serif"
+      class="flex flex-col gap-4 items-center"
+    >
+      <h1 class="text-4xl mt-4">Preview</h1>
+      <app-resume
+        id="print-section"
+        style="width: 1032px; height: 1460px"
+        [resume]="resume()"
+        [picture]="pictureURL()"
+        [signature]="signatureURL()"
+      />
+    </div>
+  </div>
+</ng-container>

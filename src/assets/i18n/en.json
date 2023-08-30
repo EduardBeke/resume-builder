@@ -1,0 +1,16 @@
+{
+  "curriculumVitae": "Curriculum Vitae",
+  "workExperience": "Work Experience",
+  "education": "Education",
+  "skills": "Skills",
+  "birthDate": "Birth date",
+  "address": "Address",
+  "mobile": "Mobile",
+  "email": "E-Mail",
+  "choosePicture": "Choose Picture",
+  "chooseSignature": "Choose Signature",
+  "print": "Print",
+  "german": "German",
+  "english": "English",
+  "romanian": "Romanian"
+}

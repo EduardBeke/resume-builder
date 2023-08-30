@@ -6,8 +6,25 @@
   "sourceRoot": "./src",
   "tags": [],
   "targets": {
+    "generate-json-schema": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/src/assets/resume-builder.json"],
+      "options": {
+        "commands": [
+          "ts-json-schema-generator --path src/app/types/resume-schema.ts -t ResumeSchema -o src/assets/resume-builder.json"
+        ],
+        "parallel": false
+      }
+    },
+    "prebuild": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run resume-builder:generate-json-schema"],
+        "parallel": false
+      }
+    },
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular-devkit/build-angular:browser-esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/resume-builder",
@@ -15,7 +32,17 @@
         "main": "./src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "./tsconfig.app.json",
-        "assets": ["./src/favicon.ico", "./src/assets"],
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "node_modules/monaco-editor",
+            "output": "/assets/monaco/"
+          },
+          "node_modules/primeng/resources/themes/viva-light/theme.css",
+          "node_modules/primeng/resources/primeng.min.css",
+          "./src/favicon.ico",
+          "./src/assets"
+        ],
         "styles": ["./src/styles.scss"],
         "scripts": []
       },
@@ -47,6 +74,21 @@
       "defaultConfiguration": "production"
     },
     "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx run resume-builder:generate-json-schema",
+          "nx run resume-builder:angular-serve"
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "production": {
+          "commands": ["nx run resume-builder:angular-serve:production"]
+        }
+      }
+    },
+    "angular-serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {

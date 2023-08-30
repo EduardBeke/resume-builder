@@ -1,0 +1,8 @@
+<div class="flex gap-8 w-full">
+  <p class="font-light w-40">
+    {{ skillGroup.name }}
+  </p>
+  <div class="flex-1">
+    <p class="font-light" [innerHTML]="skillGroup.skills.join(', ')"></p>
+  </div>
+</div>

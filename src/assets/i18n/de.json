@@ -1,0 +1,16 @@
+{
+  "curriculumVitae": "Lebenslauf",
+  "workExperience": "Berufserfahrung",
+  "education": "Bildung",
+  "skills": "Fähigkeiten",
+  "birthDate": "Geburtsdatum",
+  "address": "Adresse",
+  "mobile": "Mobiltelefon",
+  "email": "E-Mail",
+  "choosePicture": "Bild auswählen",
+  "chooseSignature": "Unterschrift auswählen",
+  "print": "Drucken",
+  "german": "Deutsch",
+  "english": "Englisch",
+  "romanian": "Rumänisch"
+}

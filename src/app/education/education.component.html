@@ -1,0 +1,14 @@
+<div class="flex gap-8 w-full">
+  <p class="font-light w-40">
+    <span> {{ education.from }}</span>
+    <span *ngIf="education.to"> - {{ education.to }} </span>
+  </p>
+  <div class="flex-1">
+    <p class="font-bold" [innerHTML]="education.name"></p>
+    <p
+      class="font-light"
+      *ngFor="let info of education.infos"
+      [innerHTML]="info"
+    ></p>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+{
+  "$ref": "#/definitions/ResumeSchema",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Education": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "infos": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "name"
+      ],
+      "type": "object"
+    },
+    "ResumeSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "birthDate": {
+          "type": "string"
+        },
+        "educations": {
+          "items": {
+            "$ref": "#/definitions/Education"
+          },
+          "type": "array"
+        },
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "signatureAddress": {
+          "type": "string"
+        },
+        "skillGroups": {
+          "items": {
+            "$ref": "#/definitions/SkillGroup"
+          },
+          "type": "array"
+        },
+        "workExperiences": {
+          "items": {
+            "$ref": "#/definitions/WorkExperience"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName",
+        "workExperiences",
+        "educations",
+        "skillGroups"
+      ],
+      "type": "object"
+    },
+    "SkillGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "skills": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "skills"
+      ],
+      "type": "object"
+    },
+    "WorkExperience": {
+      "additionalProperties": false,
+      "properties": {
+        "company": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "infos": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "role": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "from",
+        "company",
+        "role"
+      ],
+      "type": "object"
+    }
+  }
+}

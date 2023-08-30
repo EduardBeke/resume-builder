@@ -1,0 +1,15 @@
+<div class="flex gap-8 w-full">
+  <p class="font-light w-40">
+    <span> {{ workExperience.from }}</span>
+    <span *ngIf="workExperience.to"> - {{ workExperience.to }} </span>
+  </p>
+  <div class="flex-1">
+    <p class="font-bold" [innerHTML]="workExperience.company"></p>
+    <p class="" [innerHTML]="workExperience.role"></p>
+    <p
+      class="font-light"
+      *ngFor="let info of workExperience.infos"
+      [innerHTML]="info"
+    ></p>
+  </div>
+</div>

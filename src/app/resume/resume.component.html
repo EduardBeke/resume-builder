@@ -1,0 +1,94 @@
+<div class="w-full h-full flex" *transloco="let t">
+  <div
+    style="width: 400px"
+    id="sideInfo"
+    class="bg-gray-200 p-4 flex flex-col gap-4"
+  >
+    <img *ngIf="picture" [src]="picture" alt="picture" />
+    <app-side-info
+      *ngIf="resume.birthDate"
+      [icon]="'pi-calendar'"
+      [title]="t('birthDate')"
+      [value]="resume.birthDate"
+    />
+    <app-side-info
+      *ngIf="resume.address"
+      [icon]="'pi-map-marker'"
+      [title]="t('address')"
+      [value]="resume.address"
+    />
+    <app-side-info
+      *ngIf="resume.mobile"
+      [icon]="'pi-phone'"
+      [title]="t('mobile')"
+      [value]="resume.mobile"
+    />
+    <app-side-info
+      *ngIf="resume.email"
+      [icon]="'pi-envelope'"
+      [title]="t('email')"
+      [value]="resume.email"
+    />
+  </div>
+  <div id="mainInfo" class="p-4 w-full flex flex-col gap-6 bg-white">
+    <div
+      class="w-full border-2 border-black p-4 flex flex-col justify-center items-center gap-2"
+    >
+      <h2 class="text-4xl uppercase border-b-2 border-black font-bold">
+        {{ resume.firstName }} {{ resume.lastName }}
+      </h2>
+      <p class="text-xl" [innerHTML]="t('curriculumVitae')"></p>
+    </div>
+    <div
+      id="workExperience"
+      class="flex flex-col gap-4"
+      *ngIf="resume.workExperiences.length"
+    >
+      <h3
+        class="uppercase text-2xl font-bold"
+        [innerHTML]="t('workExperience')"
+      ></h3>
+      <div class="border-b border-black"></div>
+      <app-work-experience
+        *ngFor="let workExperience of resume.workExperiences"
+        [workExperience]="workExperience"
+      />
+    </div>
+    <div
+      id="education"
+      class="flex flex-col gap-4"
+      *ngIf="resume.educations.length"
+    >
+      <h3
+        class="uppercase text-2xl font-bold"
+        [innerHTML]="t('education')"
+      ></h3>
+      <div class="border-b border-black"></div>
+      <app-education
+        *ngFor="let education of resume.educations"
+        [education]="education"
+      />
+    </div>
+    <div
+      id="skills"
+      class="flex flex-col gap-4"
+      *ngIf="resume.skillGroups.length"
+    >
+      <h3 class="uppercase text-2xl font-bold" [innerHTML]="t('skills')"></h3>
+      <div class="border-b border-black"></div>
+      <app-skill-group
+        *ngFor="let skillGroup of resume.skillGroups"
+        [skillGroup]="skillGroup"
+      />
+    </div>
+    <p>{{ resume.signatureAddress }}, {{ getToday$ | async }}</p>
+    <img
+      *ngIf="signature"
+      class="max-w-3xl"
+      width="300"
+      height="50"
+      [src]="signature"
+      alt="signature"
+    />
+  </div>
+</div>
