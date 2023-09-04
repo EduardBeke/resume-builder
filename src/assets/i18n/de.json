@@ -1,8 +1,10 @@
 {
   "curriculumVitae": "Lebenslauf",
   "workExperience": "Berufserfahrung",
-  "education": "Bildung",
+  "education": "Ausbildung",
   "skills": "Fähigkeiten",
+  "certificates": "Zertifikate",
+  "personalData": "Persönliche Daten",
   "birthDate": "Geburtsdatum",
   "address": "Adresse",
   "mobile": "Mobiltelefon",

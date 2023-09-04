@@ -11,5 +11,5 @@ import { CommonModule } from '@angular/common';
 export class SideInfoComponent {
   @Input({ required: true }) public title = '';
   @Input({ required: true }) public value = '';
-  @Input({ required: true }) public icon = '';
+  @Input() public icon: string | undefined = '';
 }

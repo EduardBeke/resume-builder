@@ -13,7 +13,13 @@ export interface Education {
 }
 export interface SkillGroup {
   name: string;
+  icon?: 'pi-database' | 'pi-code' | 'pi-server' | 'pi-cog' | 'pi-language';
   skills: string[];
+}
+
+export interface Certificate {
+  name: string;
+  date: string;
 }
 
 export interface ResumeSchema {
@@ -25,6 +31,7 @@ export interface ResumeSchema {
   birthDate?: string;
   signatureAddress?: string;
   workExperiences: WorkExperience[];
+  certificates?: Certificate[];
   educations: Education[];
   skillGroups: SkillGroup[];
 }

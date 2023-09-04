@@ -8,6 +8,7 @@ import { EducationComponent } from '../education/education.component';
 import { SkillGroupComponent } from '../skill-group/skill-group.component';
 import { map } from 'rxjs';
 import { getResume } from '../get-resume';
+import { CertificateComponent } from '../certificate/certificate.component';
 
 @Component({
   selector: 'app-resume',
@@ -20,6 +21,7 @@ import { getResume } from '../get-resume';
     EducationComponent,
     SkillGroupComponent,
     NgOptimizedImage,
+    CertificateComponent,
   ],
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.scss'],

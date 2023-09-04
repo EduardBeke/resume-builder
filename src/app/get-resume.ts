@@ -64,15 +64,13 @@ export const defaultResume: ResumeSchema = {
   ],
   skillGroups: [
     {
-      name: 'Languages',
-      skills: ['German', 'English'],
-    },
-    {
       name: 'Programming languages',
+      icon: 'pi-code',
       skills: ['Java', 'C#', 'TypeScript', 'Python'],
     },
     {
       name: 'Frameworks',
+      icon: 'pi-cog',
       skills: [
         'Spring Boot',
         'ASP.NET',
@@ -84,10 +82,12 @@ export const defaultResume: ResumeSchema = {
     },
     {
       name: 'Databases',
+      icon: 'pi-database',
       skills: ['MongoDB', 'MySQL', 'FireStore', 'Neo4j'],
     },
     {
       name: 'DevOps',
+      icon: 'pi-server',
       skills: ['Docker', 'K8s', 'Ansible', 'Terraform', 'Ci/CD', 'Git'],
     },
   ],

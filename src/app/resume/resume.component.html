@@ -2,9 +2,13 @@
   <div
     style="width: 400px"
     id="sideInfo"
-    class="bg-gray-200 p-4 flex flex-col gap-4"
+    class="bg-gray-200 p-4 flex flex-col gap-4 h-full"
   >
     <img *ngIf="picture" [src]="picture" alt="picture" />
+    <h3
+      class="uppercase text-2xl font-bold"
+      [innerHTML]="t('personalData')"
+    ></h3>
     <app-side-info
       *ngIf="resume.birthDate"
       [icon]="'pi-calendar'"
@@ -29,8 +33,21 @@
       [title]="t('email')"
       [value]="resume.email"
     />
+    <div
+      id="skills"
+      class="flex flex-col gap-4"
+      *ngIf="resume.skillGroups.length"
+    >
+      <h3 class="uppercase text-2xl font-bold" [innerHTML]="t('skills')"></h3>
+      <app-side-info
+        *ngFor="let skillGroup of resume.skillGroups"
+        [icon]="skillGroup.icon"
+        [title]="skillGroup.name"
+        [value]="skillGroup.skills.join(', ')"
+      />
+    </div>
   </div>
-  <div id="mainInfo" class="p-4 w-full flex flex-col gap-6 bg-white">
+  <div id="mainInfo" class="p-4 w-full flex flex-col gap-6 bg-white h-full">
     <div
       class="w-full border-2 border-black p-4 flex flex-col justify-center items-center gap-2"
     >
@@ -70,15 +87,18 @@
       />
     </div>
     <div
-      id="skills"
+      id="certificates"
       class="flex flex-col gap-4"
-      *ngIf="resume.skillGroups.length"
+      *ngIf="resume.certificates?.length"
     >
-      <h3 class="uppercase text-2xl font-bold" [innerHTML]="t('skills')"></h3>
+      <h3
+        class="uppercase text-2xl font-bold"
+        [innerHTML]="t('certificates')"
+      ></h3>
       <div class="border-b border-black"></div>
-      <app-skill-group
-        *ngFor="let skillGroup of resume.skillGroups"
-        [skillGroup]="skillGroup"
+      <app-certificate
+        *ngFor="let certificate of resume.certificates"
+        [certificate]="certificate"
       />
     </div>
     <p>{{ resume.signatureAddress }}, {{ getToday$ | async }}</p>

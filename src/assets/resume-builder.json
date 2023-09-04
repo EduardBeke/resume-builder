@@ -2,6 +2,22 @@
   "$ref": "#/definitions/ResumeSchema",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
+    "Certificate": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "date"
+      ],
+      "type": "object"
+    },
     "Education": {
       "additionalProperties": false,
       "properties": {
@@ -37,6 +53,12 @@
         "birthDate": {
           "type": "string"
         },
+        "certificates": {
+          "items": {
+            "$ref": "#/definitions/Certificate"
+          },
+          "type": "array"
+        },
         "educations": {
           "items": {
             "$ref": "#/definitions/Education"
@@ -48,6 +70,12 @@
         },
         "firstName": {
           "type": "string"
+        },
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "lastName": {
           "type": "string"
@@ -76,13 +104,23 @@
         "lastName",
         "workExperiences",
         "educations",
-        "skillGroups"
+        "skillGroups",
+        "languages"
       ],
       "type": "object"
     },
     "SkillGroup": {
       "additionalProperties": false,
       "properties": {
+        "icon": {
+          "enum": [
+            "pi-database",
+            "pi-code",
+            "pi-server",
+            "pi-cog"
+          ],
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
