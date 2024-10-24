@@ -104,8 +104,7 @@
         "lastName",
         "workExperiences",
         "educations",
-        "skillGroups",
-        "languages"
+        "skillGroups"
       ],
       "type": "object"
     },
@@ -117,7 +116,8 @@
             "pi-database",
             "pi-code",
             "pi-server",
-            "pi-cog"
+            "pi-cog",
+            "pi-language"
           ],
           "type": "string"
         },

@@ -11,7 +11,8 @@ import { TranslocoDirective, TranslocoService } from '@ngneat/transloco';
 import { NgxPrintModule } from 'ngx-print';
 import { getResume, setResume } from '../get-resume';
 import { MenubarModule } from 'primeng/menubar';
-import { DropdownChangeEvent, DropdownModule } from 'primeng/dropdown';
+import { DropdownModule } from 'primeng/dropdown';
+import { NgxPrinterModule } from 'ngx-printer';
 
 @Component({
   selector: 'app-builder',
@@ -26,6 +27,7 @@ import { DropdownChangeEvent, DropdownModule } from 'primeng/dropdown';
     NgxPrintModule,
     MenubarModule,
     DropdownModule,
+    NgxPrinterModule,
   ],
   templateUrl: './builder.component.html',
   styleUrls: ['./builder.component.scss'],

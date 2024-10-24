@@ -40,3 +40,5 @@ Thumbs.db
 
 .angular
 /myData.json
+
+.nx/cache

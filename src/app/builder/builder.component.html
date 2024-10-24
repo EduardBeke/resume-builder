@@ -1,13 +1,6 @@
 <ng-container *transloco="let t">
   <p-menubar>
     <div class="flex gap-4">
-      <button
-        class="p-button h-fit"
-        [useExistingCss]="true"
-        printSectionId="print-section"
-        ngxPrint
-        [innerHTML]="t('print')"
-      ></button>
       <p-fileUpload
         mode="basic"
         [chooseLabel]="t('choosePicture')"
@@ -57,7 +50,8 @@
     >
       <h1 class="text-4xl mt-4">Preview</h1>
       <app-resume
-        id="print-section"
+        ngxPrintItemMarker
+        [directPrint]="true"
         style="width: 1032px; min-height: 1460px"
         [resume]="resume()"
         [picture]="pictureURL()"
