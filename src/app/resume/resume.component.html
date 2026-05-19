@@ -1,114 +1,71 @@
 <div class="w-full h-full flex" *transloco="let t">
-  <div
-    style="width: 400px"
-    id="sideInfo"
-    class="bg-gray-200 p-4 flex flex-col gap-4 h-full"
-  >
-    <img *ngIf="picture" [src]="picture" alt="picture" />
-    <h3
-      class="uppercase text-2xl font-bold"
-      [innerHTML]="t('personalData')"
-    ></h3>
-    <app-side-info
-      *ngIf="resume.birthDate"
-      [icon]="'pi-calendar'"
-      [title]="t('birthDate')"
-      [value]="resume.birthDate"
-    />
-    <app-side-info
-      *ngIf="resume.address"
-      [icon]="'pi-map-marker'"
-      [title]="t('address')"
-      [value]="resume.address"
-    />
-    <app-side-info
-      *ngIf="resume.mobile"
-      [icon]="'pi-phone'"
-      [title]="t('mobile')"
-      [value]="resume.mobile"
-    />
-    <app-side-info
-      *ngIf="resume.email"
-      [icon]="'pi-envelope'"
-      [title]="t('email')"
-      [value]="resume.email"
-    />
-    <div
-      id="skills"
-      class="flex flex-col gap-4"
-      *ngIf="resume.skillGroups.length"
-    >
-      <h3 class="uppercase text-2xl font-bold" [innerHTML]="t('skills')"></h3>
-      <app-side-info
-        *ngFor="let skillGroup of resume.skillGroups"
-        [icon]="skillGroup.icon"
-        [title]="skillGroup.name"
-        [value]="skillGroup.skills.join(', ')"
-      />
-    </div>
+  <div style="width: 400px" id="sideInfo" class="bg-gray-200 p-4 flex flex-col gap-4 h-full">
+    @if (picture) {
+      <img [src]="picture" alt="picture" />
+    }
+    <h3 class="uppercase text-2xl font-bold" [innerHTML]="t('personalData')"></h3>
+    @if (resume.birthDate) {
+      <app-side-info [icon]="'pi-calendar'" [title]="t('birthDate')" [value]="resume.birthDate" />
+    }
+    @if (resume.address) {
+      <app-side-info [icon]="'pi-map-marker'" [title]="t('address')" [value]="resume.address" />
+    }
+    @if (resume.mobile) {
+      <app-side-info [icon]="'pi-phone'" [title]="t('mobile')" [value]="resume.mobile" />
+    }
+    @if (resume.email) {
+      <app-side-info [icon]="'pi-envelope'" [title]="t('email')" [value]="resume.email" />
+    }
+    @if (resume.skillGroups.length) {
+      <div id="skills" class="flex flex-col gap-4">
+        <h3 class="uppercase text-2xl font-bold" [innerHTML]="t('skills')"></h3>
+        @for (skillGroup of resume.skillGroups; track skillGroup) {
+          <app-side-info
+            [icon]="skillGroup.icon"
+            [title]="skillGroup.name"
+            [value]="skillGroup.skills.join(', ')"
+          />
+        }
+      </div>
+    }
   </div>
   <div id="mainInfo" class="p-4 w-full flex flex-col gap-6 bg-white h-full">
-    <div
-      class="w-full border-2 border-black p-4 flex flex-col justify-center items-center gap-2"
-    >
+    <div class="w-full border-2 border-black p-4 flex flex-col justify-center items-center gap-2">
       <h2 class="text-4xl uppercase border-b-2 border-black font-bold">
         {{ resume.firstName }} {{ resume.lastName }}
       </h2>
       <p class="text-xl" [innerHTML]="t('curriculumVitae')"></p>
     </div>
-    <div
-      id="workExperience"
-      class="flex flex-col gap-4"
-      *ngIf="resume.workExperiences.length"
-    >
-      <h3
-        class="uppercase text-2xl font-bold"
-        [innerHTML]="t('workExperience')"
-      ></h3>
-      <div class="border-b border-black"></div>
-      <app-work-experience
-        *ngFor="let workExperience of resume.workExperiences"
-        [workExperience]="workExperience"
-      />
-    </div>
-    <div
-      id="education"
-      class="flex flex-col gap-4"
-      *ngIf="resume.educations.length"
-    >
-      <h3
-        class="uppercase text-2xl font-bold"
-        [innerHTML]="t('education')"
-      ></h3>
-      <div class="border-b border-black"></div>
-      <app-education
-        *ngFor="let education of resume.educations"
-        [education]="education"
-      />
-    </div>
-    <div
-      id="certificates"
-      class="flex flex-col gap-4"
-      *ngIf="resume.certificates?.length"
-    >
-      <h3
-        class="uppercase text-2xl font-bold"
-        [innerHTML]="t('certificates')"
-      ></h3>
-      <div class="border-b border-black"></div>
-      <app-certificate
-        *ngFor="let certificate of resume.certificates"
-        [certificate]="certificate"
-      />
-    </div>
+    @if (resume.workExperiences.length) {
+      <div id="workExperience" class="flex flex-col gap-4">
+        <h3 class="uppercase text-2xl font-bold" [innerHTML]="t('workExperience')"></h3>
+        <div class="border-b border-black"></div>
+        @for (workExperience of resume.workExperiences; track workExperience) {
+          <app-work-experience [workExperience]="workExperience" />
+        }
+      </div>
+    }
+    @if (resume.educations.length) {
+      <div id="education" class="flex flex-col gap-4">
+        <h3 class="uppercase text-2xl font-bold" [innerHTML]="t('education')"></h3>
+        <div class="border-b border-black"></div>
+        @for (education of resume.educations; track education) {
+          <app-education [education]="education" />
+        }
+      </div>
+    }
+    @if (resume.certificates?.length) {
+      <div id="certificates" class="flex flex-col gap-4">
+        <h3 class="uppercase text-2xl font-bold" [innerHTML]="t('certificates')"></h3>
+        <div class="border-b border-black"></div>
+        @for (certificate of resume.certificates; track certificate) {
+          <app-certificate [certificate]="certificate" />
+        }
+      </div>
+    }
     <p>{{ resume.signatureAddress }}, {{ getToday$ | async }}</p>
-    <img
-      *ngIf="signature"
-      class="max-w-3xl"
-      width="300"
-      height="50"
-      [src]="signature"
-      alt="signature"
-    />
+    @if (signature) {
+      <img class="max-w-3xl" width="300" height="50" [src]="signature" alt="signature" />
+    }
   </div>
 </div>

@@ -1,24 +1,20 @@
 import { Component, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  MonacoEditorModule,
-  NGX_MONACO_EDITOR_CONFIG,
-} from 'ngx-monaco-editor-v2';
+
+import { MonacoEditorModule, NGX_MONACO_EDITOR_CONFIG } from 'ngx-monaco-editor-v2';
 import { FormsModule } from '@angular/forms';
 import { ResumeComponent } from '../resume/resume.component';
 import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
-import { TranslocoDirective, TranslocoService } from '@ngneat/transloco';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { NgxPrintModule } from 'ngx-print';
 import { getResume, setResume } from '../get-resume';
 import { MenubarModule } from 'primeng/menubar';
-import { DropdownModule } from 'primeng/dropdown';
 import { NgxPrinterModule } from 'ngx-printer';
+import { Select } from 'primeng/select';
 
 @Component({
   selector: 'app-builder',
   standalone: true,
   imports: [
-    CommonModule,
     MonacoEditorModule,
     FormsModule,
     ResumeComponent,
@@ -26,12 +22,12 @@ import { NgxPrinterModule } from 'ngx-printer';
     TranslocoDirective,
     NgxPrintModule,
     MenubarModule,
-    DropdownModule,
     NgxPrinterModule,
+    Select,
   ],
   templateUrl: './builder.component.html',
   styleUrls: ['./builder.component.scss'],
-  providers: [{ provide: NGX_MONACO_EDITOR_CONFIG, useValue: {} }],
+  providers: [{ provide: NGX_MONACO_EDITOR_CONFIG, useValue: { baseUrl: '/public/monaco/min/vs' } }],
 })
 export class BuilderComponent {
   protected readonly translocoService = inject(TranslocoService);
@@ -41,9 +37,7 @@ export class BuilderComponent {
     { key: 'german', value: 'de' },
     { key: 'english', value: 'en' },
     { key: 'romanian', value: 'ro' },
-  ].sort(({ value }) =>
-    value === this.translocoService.getActiveLang() ? -1 : 1
-  );
+  ].sort(({ value }) => (value === this.translocoService.getActiveLang() ? -1 : 1));
   protected resumeString = JSON.stringify(getResume());
 
   protected resume = signal(getResume());
@@ -60,7 +54,7 @@ export class BuilderComponent {
         {
           fileMatch: ['*'],
           schema: {
-            $ref: `${window.location.origin}/assets/resume-builder.json`,
+            $ref: `${window.location.origin}/resume-builder.json`,
           },
         },
       ],
@@ -74,17 +68,13 @@ export class BuilderComponent {
 
   protected onSelectPicture(event: FileSelectEvent): void {
     this.pictureURL.set(
-      (event.currentFiles[0] as any)['objectURL'][
-        'changingThisBreaksApplicationSecurity'
-      ]
+      (event.currentFiles[0] as any)['objectURL']['changingThisBreaksApplicationSecurity'],
     );
   }
 
   protected onSelectSignature(event: FileSelectEvent): void {
     this.signatureURL.set(
-      (event.currentFiles[0] as any)['objectURL'][
-        'changingThisBreaksApplicationSecurity'
-      ]
+      (event.currentFiles[0] as any)['objectURL']['changingThisBreaksApplicationSecurity'],
     );
   }
 

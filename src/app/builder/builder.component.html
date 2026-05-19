@@ -17,7 +17,7 @@
         [maxFileSize]="1000000"
         (onSelect)="onSelectSignature($event)"
       ></p-fileUpload>
-      <p-dropdown
+      <p-select
         [options]="languages"
         optionLabel="key"
         optionValue="value"
@@ -29,7 +29,7 @@
         <ng-template let-language pTemplate="item">
           <p [innerText]="t(language.key)"></p>
         </ng-template>
-      </p-dropdown>
+      </p-select>
     </div>
   </p-menubar>
   <div class="flex">
@@ -44,10 +44,7 @@
       />
     </div>
 
-    <div
-      style="font-family: 'Avenir LT Pro', sans-serif"
-      class="flex flex-col gap-4 items-center"
-    >
+    <div style="font-family: 'Avenir LT Pro', sans-serif" class="flex flex-col gap-4 items-center">
       <h1 class="text-4xl mt-4">Preview</h1>
       <app-resume
         ngxPrintItemMarker

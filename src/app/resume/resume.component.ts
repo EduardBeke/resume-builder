@@ -1,11 +1,10 @@
 import { Component, inject, Input } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ResumeSchema } from '../types/resume-schema';
 import { SideInfoComponent } from '../side-info/side-info.component';
-import { TranslocoDirective, TranslocoService } from '@ngneat/transloco';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { WorkExperienceComponent } from '../work-experience/work-experience.component';
 import { EducationComponent } from '../education/education.component';
-import { SkillGroupComponent } from '../skill-group/skill-group.component';
 import { map } from 'rxjs';
 import { getResume } from '../get-resume';
 import { CertificateComponent } from '../certificate/certificate.component';
@@ -19,8 +18,6 @@ import { CertificateComponent } from '../certificate/certificate.component';
     TranslocoDirective,
     WorkExperienceComponent,
     EducationComponent,
-    SkillGroupComponent,
-    NgOptimizedImage,
     CertificateComponent,
   ],
   templateUrl: './resume.component.html',

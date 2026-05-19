@@ -1,10 +1,9 @@
 <div class="flex w-fit h-fit gap-4">
-  <div
-    class="bg-blue-500 min-w-[2rem] w-8 h-8 rounded-full flex items-center justify-center"
-    *ngIf="icon"
-  >
-    <i style="font-size: 1rem; color: white" [class]="'pi ' + icon"></i>
-  </div>
+  @if (icon) {
+    <div class="bg-blue-500 min-w-[2rem] w-8 h-8 rounded-full flex items-center justify-center">
+      <i style="font-size: 1rem; color: white" [class]="'pi ' + icon"></i>
+    </div>
+  }
   <div>
     <p class="font-bold">{{ title }}</p>
     <p class="font-light" [innerHTML]="value"></p>
